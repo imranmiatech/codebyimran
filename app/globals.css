@@ -1,26 +1,74 @@
 @import 'tailwindcss';
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
 @plugin 'lightswind/plugin';
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
 
 @theme inline {
-  --color-background: var(--background);
+  --font-sans: var(--font-space);
+    --color-background: #111111;
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+:root{
+  background-color: #111111;
+}
+/* Scroll line animation (slow wave) */
+@keyframes lineMove {
+  0% {
+    top: 0;
+  }
+  50% {
+    top: 80px;
+  }
+  100% {
+    top: 0;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+.animate-lineMove {
+  animation: lineMove 8s ease-in-out infinite;
+}
+
+/* Fast line animation for other uses */
+@keyframes lineMoveFast {
+  0% {
+    top: -20px;
+  }
+  100% {
+    top: 100%;
+  }
+}
+
+.animate-lineMoveFast {
+  animation: lineMoveFast 2s linear infinite;
+}
+
+/* Hover animation for social links - add this */
+@keyframes slideUp {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-100%);
+  }
+}
+
+@keyframes slideDown {
+  0% {
+    transform: translateY(100%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
 }

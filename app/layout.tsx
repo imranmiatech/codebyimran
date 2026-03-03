@@ -1,7 +1,16 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { Space_Grotesk } from "next/font/google";
 import "./globals.css";
 
+// Space Grotesk 600
+const spaceGrotesk = Space_Grotesk({
+  subsets: ["latin"],
+  weight: ["600"],
+  variable: "--font-space",
+});
+
+// Geist fonts
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -23,12 +32,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {children}
-      </body>
+    <html
+      lang="en"
+      className={`${spaceGrotesk.variable} ${geistSans.variable} ${geistMono.variable}`}
+    >
+      <body className="">{children}</body>
     </html>
   );
 }

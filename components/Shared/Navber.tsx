@@ -3,19 +3,16 @@
 import { ChevronsLeftRight, ChevronsDown } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
-import { TypingText } from "../lightswind/typing-text";
-
-const navLinks = [
-  { name: "About", href: "#about" },
-  { name: "Project", href: "#project" },
-  { name: "Blog", href: "#blog" },
-  { name: "Contact", href: "#contact" },
-];
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
-  const [animatedItems, setAnimatedItems] = useState<Record<number, boolean>>({});
-  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+
+  const menuItems = [
+    { href: "/about", label: "About" },
+    { href: "/work", label: "Work" },
+    { href: "/projects", label: "Projects" },
+    { href: "/contact", label: "Contact" },
+  ];
 
   return (
     <div className="fixed top-0 w-full max-w-407 px-5 py-10 flex justify-between items-start z-50">
@@ -36,62 +33,34 @@ const Navbar = () => {
           {/* Top row */}
           <div className="flex justify-between items-center w-full">
             <p>Menu</p>
-
-            {/* Icon change */}
-            {open ? (
-              <div className="flex flex-col items-center">
-                <ChevronsDown />
-              </div>
-            ) : (
-              <ChevronsLeftRight />
-            )}
+            {open ? <ChevronsDown size={20} /> : <ChevronsLeftRight size={20} />}
           </div>
 
           {/* Dropdown */}
           <div
             className={`w-full overflow-hidden transition-all duration-300 ${
-              open ? "max-h-60 opacity-100 mt-2" : "max-h-0 opacity-0"
+              open ? "max-h-96 opacity-100 mt-4" : "max-h-0 opacity-0"
             }`}
           >
-            <ul className="flex flex-col font-semibold text-[16px] leading-[1.4]">
-              {navLinks.map((link, i) => (
-                <li
-                  key={link.name}
-                  onMouseEnter={() => {
-                    setHoveredIndex(i);
-                    if (!animatedItems[i]) {
-                      setAnimatedItems((prev) => ({ ...prev, [i]: true }));
-                    }
-                  }}
-                  onMouseLeave={() => setHoveredIndex(null)}
-                  onTouchStart={() => {
-                    setHoveredIndex(i);
-                    if (!animatedItems[i]) {
-                      setAnimatedItems((prev) => ({ ...prev, [i]: true }));
-                    }
-                  }}
-                  onTouchEnd={() => setHoveredIndex(null)}
-                >
+            <div className="flex flex-col font-semibold text-[16px] leading-[1.4] gap-y-3">
+              {menuItems.map((item) => (
+                <div key={item.label} className="group relative overflow-hidden py-1">
+                  {/* Original text that slides up */}
+                  <div className="transition-transform duration-300 text-left ease-[cubic-bezier(0.2,0.9,0.3,1.1)] group-hover:-translate-y-full">
+                  {item.label}
+                  </div>
+                  
+                  {/* Link that slides in from bottom */}
                   <Link
-                    href={link.href}
-                    className="block py-2 text-slate-800 items-start text-left transition-colors duration-200"
+                    href={item.href}
+                    className="absolute left-0 top-full translate-y-0 transition-transform duration-300 ease-[cubic-bezier(0.2,0.9,0.3,1.1)] group-hover:translate-y-[-100%] whitespace-nowrap"
                   >
-                    <TypingText
-                      delay={0}
-                      duration={0.5}
-                      fontSize="text-[16px]"
-                      fontWeight="font-semibold"
-                      letterSpacing="tracking-wide"
-                      align="left"
-                      color="text-slate-800"
-                      animate={animatedItems[i] && hoveredIndex === i} // ✅ animate only once
-                    >
-                      {link.name}
-                    </TypingText>
+                    
+                    <span className="text-slate-800">{item.label}</span>
                   </Link>
-                </li>
+                </div>
               ))}
-            </ul>
+            </div>
           </div>
         </button>
       </div>
