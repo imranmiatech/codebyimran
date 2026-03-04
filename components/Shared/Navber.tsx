@@ -1,5 +1,6 @@
 "use client";
 
+
 import { ChevronsLeftRight, ChevronsDown } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
@@ -15,7 +16,8 @@ const Navbar = () => {
   ];
 
   return (
-    <div className="fixed top-0 w-full max-w-407 px-5 py-10 flex justify-between items-start z-50">
+    <div className="w-full flex justify-center fixed top-0 z-50 bg-black h-fit">
+    <div className=" w-full max-w-407 px-5 py-10 flex justify-between items-start z-50">
       {/* Logo */}
       <div className="h-full items-start">
         <h4 className="text-lg text-white cursor-pointer">IMRAN.DEV</h4>
@@ -64,6 +66,7 @@ const Navbar = () => {
           </div>
         </button>
       </div>
+    </div>
     </div>
   );
 };

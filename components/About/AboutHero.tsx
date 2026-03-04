@@ -1,0 +1,237 @@
+
+"use client";
+
+import  { useRef, useEffect } from 'react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import {
+  Figma,
+  Github,
+  Layers,
+  Code2,
+  Cpu,
+  Globe,
+  Database,
+  Terminal,
+  Zap
+} from 'lucide-react';
+
+// Register ScrollTrigger plugin
+gsap.registerPlugin(ScrollTrigger);
+
+const ICONS_DATA = [
+  { Icon: Code2, color: 'text-emerald-500', x: -450, y: -250, size: 48 },
+  { Icon: Figma, color: 'text-purple-500', x: 420, y: -220, size: 40 },
+  { Icon: Github, color: 'text-white', x: -400, y: 280, size: 44 },
+  { Icon: Layers, color: 'text-blue-500', x: 460, y: 240, size: 52 },
+  { Icon: Cpu, color: 'text-orange-500', x: -520, y: 20, size: 36 },
+  { Icon: Globe, color: 'text-cyan-500', x: 520, y: 80, size: 42 },
+  { Icon: Database, color: 'text-yellow-500', x: -220, y: 380, size: 38 },
+  { Icon: Terminal, color: 'text-green-500', x: 220, y: -380, size: 40 },
+  { Icon: Zap, color: 'text-yellow-400', x: 20, y: -420, size: 44 },
+];
+
+const FloatingIcons = () => {
+  return (
+    <div className="absolute inset-0 pointer-events-none z-0 flex items-center justify-center">
+      {ICONS_DATA.map((item, i) => (
+        <div
+          key={i}
+          className="floating-icon absolute opacity-0"
+          data-x={item.x}
+          data-y={item.y}
+        >
+          <item.Icon size={item.size} className={item.color} />
+        </div>
+      ))}
+    </div>
+  );
+};
+
+export default function App() {
+  const container = useRef<HTMLDivElement>(null);
+  const heroRef = useRef<HTMLDivElement>(null);
+  const titleContainerRef = useRef<HTMLDivElement>(null);
+  const imageRef = useRef<HTMLDivElement>(null);
+  const textSectionRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!container.current) return;
+
+    // Initial entrance animation
+    const entranceTl = gsap.timeline();
+    entranceTl.from('.hero-hello', {
+      y: 20,
+      opacity: 0,
+      duration: 0.8,
+      ease: 'power3.out'
+    })
+      .from('.hero-title', {
+        y: 40,
+        opacity: 0,
+        duration: 1,
+        stagger: 0.2,
+        ease: 'power4.out'
+      }, '-=0.4')
+      .from(imageRef.current, {
+        y: 50,
+        opacity: 0,
+        duration: 1.2,
+        ease: 'expo.out'
+      }, '-=0.8');
+
+    // Main Scroll Timeline
+    const mainTl = gsap.timeline({
+      scrollTrigger: {
+        trigger: container.current,
+        start: 'top top',
+        end: '+=150%',
+        scrub: 1,
+        pin: true,
+        anticipatePin: 1,
+      }
+    });
+
+    // Animate heading with scale and movement
+    if (titleContainerRef.current) {
+      mainTl.to(titleContainerRef.current, {
+        scale: 0.3,
+        y: -150,
+        ease: 'none',
+        duration: 1
+      }, 0);
+    }
+
+    // Animate image with movement ONLY (no scaling)
+    if (imageRef.current) {
+      mainTl.to(imageRef.current, {
+        y: -100, // Only move, NO scale property
+        ease: 'none',
+        duration: 1
+      }, 0);
+    }
+
+    // Icons spread outward from the center
+    const icons = gsap.utils.toArray<HTMLElement>('.floating-icon');
+    icons.forEach((icon) => {
+      const targetX = icon.getAttribute('data-x');
+      const targetY = icon.getAttribute('data-y');
+
+      if (targetX && targetY) {
+        mainTl.to(icon, {
+          x: parseInt(targetX),
+          y: parseInt(targetY),
+          opacity: 0.4,
+          rotation: 0,
+          ease: 'power2.out',
+          duration: 1
+        }, 0);
+      }
+    });
+
+    // Idle floating animation for icons (after they spread)
+    icons.forEach((icon) => {
+      gsap.to(icon, {
+        x: `+=${Math.random() * 30 - 15}`,
+        y: `+=${Math.random() * 30 - 15}`,
+        rotation: `+=${Math.random() * 20 - 10}`,
+        duration: Math.random() * 3 + 2,
+        repeat: -1,
+        yoyo: true,
+        ease: 'sine.inOut',
+        delay: Math.random() * 2
+      });
+    });
+
+    // Content Section Reveal
+    gsap.from('.scroll-text-p', {
+      scrollTrigger: {
+        trigger: textSectionRef.current,
+        start: 'top 90%',
+        end: 'top 40%',
+        scrub: true,
+      },
+      opacity: 0.1,
+      y: 50,
+      stagger: 0.1,
+    });
+
+    gsap.from('.sub-text', {
+      scrollTrigger: {
+        trigger: '.sub-text',
+        start: 'top 95%',
+        end: 'top 70%',
+        scrub: true,
+      },
+      opacity: 0,
+      y: 30,
+    });
+
+    // Cleanup
+    return () => {
+      ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+    };
+  }, []);
+
+  return (
+    <div ref={container} className="relative bg-[#0a0a0a] text-white">
+      {/* Background Glow */}
+      <div className="fixed top-0 right-0 w-[60vw] h-[60vh] bg-emerald-500/20 -z-10 blur-[120px] opacity-50" />
+
+      {/* Hero Section (Pinned) */}
+      <section ref={heroRef} className="relative  justify-between flex flex-col items-center  text-center px-4 min-h-screen">
+        {/* Sticky Heading */}
+        <div ref={titleContainerRef} className="z-10 sticky top-0 mb-4 pt-[50px] transition-transform will-change-transform">
+          <p className="hero-hello text-emerald-500 font-mono text-sm mb-4 tracking-widest uppercase">
+            // Hello World
+          </p>
+          <h1 className="hero-title text-5xl md:text-8xl font-black tracking-tighter leading-none mb-2 font-display">
+            I'M A FULL
+          </h1>
+          <h1 className="hero-title text-5xl md:text-8xl font-black tracking-tighter leading-none font-display">
+            STACK DEVELOPER
+          </h1>
+        </div>
+
+        {/* Image + Floating Icons */}
+        <div className="relative z-20 flex items-center justify-center mt-12">
+          <FloatingIcons />
+          <div className="relative w-72 md:w-96 aspect-[3/4] rounded-2xl overflow-hidden shadow-2xl border border-white/5 bg-zinc-900">
+            <img
+              src="https://picsum.photos/seed/developer/800/1200"
+              alt="Developer"
+              className="w-full h-full object-cover grayscale contrast-125 brightness-90"
+              referrerPolicy="no-referrer"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-transparent to-transparent opacity-60" />
+          </div>
+        </div>
+      </section>
+
+      {/* Content Section */}
+      <section ref={textSectionRef} className="relative py-40 px-6 max-w-5xl mx-auto text-center z-40 bg-[#0a0a0a]">
+        <div className="scroll-text-p text-2xl md:text-5xl font-bold leading-tight mb-20">
+          <span className="text-emerald-500 font-mono">&lt;p&gt;</span>
+          {' '}I CRAFT FAST, SCALABLE, AND{' '}
+          <span className="text-emerald-500">USER-FRIENDLY WEB</span>
+          {' '}APPLICATIONS WITH MODERN JAVASCRIPT FRAMEWORKS — COMBINING{' '}
+          <span className="text-white">REACT</span> ON THE FRONTEND WITH ROBUST{' '}
+          <span className="text-emerald-500 uppercase">Server-side solutions</span>
+          {' '}USING{' '}
+          <span className="text-white">NODE.JS.</span>{' '}
+          <span className="text-emerald-500 font-mono">&lt;/p&gt;</span>
+        </div>
+
+        <p className="sub-text text-lg md:text-2xl text-zinc-400 max-w-3xl mx-auto leading-relaxed font-light">
+          I thrive on solving real-world problems, turning ideas into clean,
+          maintainable code, and learning through experimentation. You'll find me
+          building side projects, diving into new tech stacks, or simply exploring
+          web development.
+        </p>
+      </section>
+
+      {/* Footer Space */}
+      <div className="h-[30vh]" />
+    </div>
+  );
+}

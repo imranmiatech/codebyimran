@@ -6,7 +6,7 @@ import "./globals.css";
 // Space Grotesk 600
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
-  weight: ["600"],
+  weight: ["300", "400", "500", "600", "700"],
   variable: "--font-space",
 });
 
@@ -40,3 +40,5 @@ export default function RootLayout({
     </html>
   );
 }
+
+

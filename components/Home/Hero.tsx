@@ -1,14 +1,42 @@
 "use client";
 
-
 const Hero = () => {
-
-
   return (
-    <div className="w-full  h-fit md:h-fit  bg-black/40 z-20 flex pt-40 pb-10 justify-center overflow-hidden" >
+    <div className="relative w-full lg:min-h-screen bg-black overflow-hidden flex pt-40 pb-10 justify-center">
 
-      
-      <div className="w-full flex flex-col max-w-407 z-40 px-5">
+      {/* ── Tablet+ image: absolute, centered horizontally, sits between name and bottom row ── */}
+      <div
+        className="hidden md:block absolute left-1/2 -translate-x-1/2 z-10 pointer-events-none"
+        style={{
+          top: "clamp(180px, 28vw, 320px)",
+          width: "clamp(260px, 36vw, 520px)",
+        }}
+      >
+        {/* Glow lives here — always behind this image */}
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            background:
+              "radial-gradient(ellipse 100% 70% at 50% 40%, rgba(50,200,80,0.30) 0%, rgba(30,140,60,0.15) 45%, transparent 70%)",
+            transform: "scale(1.8)",
+            zIndex: -1,
+          }}
+        />
+        <img
+          src="/imrans.png"
+          alt="MD Imran"
+          className="w-full block object-cover object-top relative z-10"
+          style={{
+            maskImage: "linear-gradient(to bottom, black 55%, transparent 100%)",
+            WebkitMaskImage: "linear-gradient(to bottom, black 55%, transparent 100%)",
+          }}
+        />
+      </div>
+
+      {/* ── ORIGINAL content wrapper ── */}
+      <div className="relative w-full flex flex-col max-w-407 z-40 px-5">
+
+        {/* Name block */}
         <div className="flex flex-col">
           <h6 className="text-[clamp(18px,3vw,24px)] font-[var(--font-space)] leading-[1.4] text-white font-bold text-left">
             Hey, 👋 I'm a Full Stack Developer
@@ -17,19 +45,54 @@ const Hero = () => {
             MD IMRAN
           </h1>
         </div>
-        <div className="w-full right-0 flex flex-col pt-5 md:pt-12 lg:pt-20 items-end gap-y-4">
+
+        {/* ── Mobile only: image + scroll side by side ── */}
+        <div className="flex md:hidden w-full mt-6 items-end">
+          {/* Image takes most of the width */}
+          <div className="flex-1 pointer-events-none relative">
+            {/* Glow behind mobile image */}
+            <div
+              className="absolute inset-0 pointer-events-none"
+              style={{
+                background: "radial-gradient(ellipse 100% 70% at 50% 40%, rgba(50,200,80,0.40) 0%, rgba(30,140,60,0.20) 45%, transparent 70%)",
+                transform: "scale(2)",
+                zIndex: 0,
+              }}
+            />
+            <img
+              src="/imrans.png"
+              alt="MD Imran"
+              className="w-full block object-cover object-top relative z-10"
+              style={{
+                maskImage: "linear-gradient(to bottom, black 60%, transparent 100%)",
+                WebkitMaskImage: "linear-gradient(to bottom, black 60%, transparent 100%)",
+              }}
+            />
+          </div>
+          {/* Scroll indicator — right side of image */}
+          <div className="flex flex-col items-center pb-4 pl-2 gap-y-2 shrink-0">
+            <div className="relative w-px h-20 bg-[#7af298] overflow-hidden">
+              <div className="absolute top-0 left-0 w-px h-5 bg-white animate-lineMove"></div>
+            </div>
+            <span className="uppercase font-[var(--font-space)] text-[12px] font-semibold text-white tracking-[0.3em] [writing-mode:vertical-rl] rotate-180">
+              Scroll
+            </span>
+          </div>
+        </div>
+
+        {/* ── Desktop scroll indicator (hidden on mobile) ── */}
+        <div className="hidden md:flex w-full right-0 flex-col pt-5 md:pt-12 lg:pt-20 items-end gap-y-4">
           <div className="w-fit flex flex-col items-center">
-            {/* Animated Line */}
             <div className="relative w-px h-20 bg-[#7af298] overflow-hidden">
               <div className="absolute top-0 left-0 w-px h-5 bg-[#ffff] animate-lineMove"></div>
             </div>
-            {/* Scroll Text */}
             <span className="uppercase font-[var(--font-space)] text-[16px] font-semibold text-white tracking-[0.3em] [writing-mode:vertical-rl] rotate-180">
               Scroll
             </span>
           </div>
         </div>
 
+        {/* Bottom row */}
         <div className="w-full flex flex-col md:flex-row pt-5 md:pt-12 lg:pt-20 items-end justify-between">
           <div className="flex flex-col gap-y-2 w-full md:w-fit items-start pt-5 md:pt-0 order-2 md:order-1 text-white">
             <a
@@ -50,9 +113,7 @@ const Hero = () => {
               I craft fast, scalable, and user-friendly web applications with modern JavaScript frameworks — combining React on the frontend with robust server-side solutions using Node.js.
             </p>
 
-            {/* Social Media List with Hover Effect */}
             <ul className="grid grid-cols-2 md:grid-cols-4 justify-between items-start text-[16px] font-[var(--font-space)] font-normal leading-[26px] text-white w-full md:max-w-[350px]">
-              {/* Twitter (x) - with hover effect */}
               <li className="group relative overflow-hidden cursor-pointer py-1">
                 <div className="transition-transform duration-300 ease-[cubic-bezier(0.2,0.9,0.3,1.1)] whitespace-nowrap group-hover:-translate-y-full">
                   <span className="text-[#7af298]">/</span> Twitter (x)
@@ -63,7 +124,6 @@ const Hero = () => {
                 </div>
               </li>
 
-              {/* LinkedIn - with hover effect */}
               <li className="group relative overflow-hidden cursor-pointer py-1">
                 <div className="transition-transform duration-300 ease-[cubic-bezier(0.2,0.9,0.3,1.1)] whitespace-nowrap group-hover:-translate-y-full">
                   <span className="text-[#7af298]">/</span> LinkedIn
@@ -74,7 +134,6 @@ const Hero = () => {
                 </div>
               </li>
 
-              {/* Github - with hover effect */}
               <li className="group relative overflow-hidden cursor-pointer py-1">
                 <div className="transition-transform duration-300 ease-[cubic-bezier(0.2,0.9,0.3,1.1)] whitespace-nowrap group-hover:-translate-y-full">
                   <span className="text-[#7af298]">/</span> Github
@@ -85,7 +144,6 @@ const Hero = () => {
                 </div>
               </li>
 
-              {/* Facebook - with hover effect */}
               <li className="group relative overflow-hidden cursor-pointer py-1">
                 <div className="transition-transform duration-300 ease-[cubic-bezier(0.2,0.9,0.3,1.1)] whitespace-nowrap group-hover:-translate-y-full">
                   <span className="text-[#7af298]">/</span> Facebook
@@ -98,9 +156,8 @@ const Hero = () => {
             </ul>
           </div>
         </div>
-     
       </div>
-      
+
     </div>
   );
 };
