@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
 import Link from "next/link";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
@@ -112,7 +112,7 @@ function BlogCard({ blog, index }: { blog: Blog; index: number }) {
 
 // ─── Main ─────────────────────────────────────────────────────────────────────
 
-export default function Blogs({ blogs }: BlogsProps) {
+export default function Blog({ blogs }: BlogsProps) {
   const labelRef = useRef(null);
   const titleRef = useRef(null);
   const btnRef   = useRef(null);
@@ -120,47 +120,54 @@ export default function Blogs({ blogs }: BlogsProps) {
   const labelInView = useInView(labelRef, { once: true });
   const titleInView = useInView(titleRef, { once: true, margin: "-60px" });
   const btnInView   = useInView(btnRef,   { once: true, margin: "-40px" });
+  const [showAll, setShowAll] = useState(false);
+  
+      // Only show first 3 if showAll is false
+      const displayedBlogs = showAll ? blogs : blogs.slice(0, 3);
 
   return (
     <section className="w-full bg-black text-white">
       <div className="max-w-[1300px] mx-auto px-5 py-20 lg:py-28">
 
         {/* ── Top row ── */}
-        <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-6">
-          <motion.p
-            ref={labelRef}
-            className="font-semibold shrink-0"
-            style={{ fontSize: 16, color: "#7af298", fontFamily: "var(--font-space)" }}
-            initial={{ opacity: 0, y: 10 }}
-            animate={labelInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.45, ease: "easeOut" }}
-          >
-            // Blogs
-          </motion.p>
+        <div className=" w-full flex flex-col justify-center items-center gap-6">
 
-          <motion.h2
-            ref={titleRef}
-            className="text-white font-bold md:text-right"
-            style={{
-              fontSize: "clamp(28px, 4vw, 48px)",
-              lineHeight: 1.15,
-              fontFamily: "var(--font-space)",
-              maxWidth: 520,
-            }}
-            initial={{ opacity: 0, y: 24 }}
-            animate={titleInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
-          >
-            Developer Insights<br />& Ideas
-          </motion.h2>
-        </div>
+                    {/* Label */}
+                    <motion.p
+                        ref={labelRef}
+                        className="font-semibold shrink-0"
+                        style={{ fontSize: 16, color: "#7af298", fontFamily: "var(--font-space)" }}
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={labelInView ? { opacity: 1, y: 0 } : {}}
+                        transition={{ duration: 0.45, ease: "easeOut" }}
+                    >
+                         // Explore Blog
+                    </motion.p>
+
+                    {/* Big heading */}
+                    <motion.h2
+                        ref={titleRef}
+                        className="text-white font-bold w-full flex justify-center text-center"
+                        style={{
+                            fontSize: "clamp(32px, 4vw, 48px)",
+                            lineHeight: 1.1,
+                            fontFamily: "var(--font-space)",
+                            maxWidth: 640,
+                        }}
+                        initial={{ opacity: 0, y: 24 }}
+                        animate={titleInView ? { opacity: 1, y: 0 } : {}}
+                        transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
+                    >
+                        Developer Insights & Ideas
+                    </motion.h2>
+                </div>
 
         {/* ── Animated divider ── */}
         <AnimatedLine />
 
         {/* ── Blog grid ── */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
-          {blogs?.map((blog, i) => (
+          {displayedBlogs?.map((blog, i) => (
             <BlogCard key={blog.id} blog={blog} index={i} />
           ))}
         </div>
@@ -174,24 +181,26 @@ export default function Blogs({ blogs }: BlogsProps) {
           transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
         >
           
-             <a
+            {!showAll && <a
                     href="#"
+                    onClick={() => setShowAll(!showAll)}
                     className="group relative overflow-hidden cursor-pointer py-1 w-fit flex items-center gap-2"
                     style={{ fontFamily: "var(--font-space)", fontSize: 16, textDecoration: "none" }}
                 >
                     {/* Default state */}
                     <div className="transition-transform duration-300 ease-[cubic-bezier(0.2,0.9,0.3,1.1)] whitespace-nowrap group-hover:-translate-y-full flex items-center gap-2">
 
-                        <span className="text-white font-semibold">More Blogs</span>
+                        <span className="text-white font-semibold">More Blog</span>
                         <ArrowUpRight size={16} className="text-white" />
                     </div>
                     {/* Hover state — slides up from below */}
                     <div className="absolute left-0 top-full transition-transform duration-300 ease-[cubic-bezier(0.2,0.9,0.3,1.1)] group-hover:translate-y-[-100%] whitespace-nowrap flex items-center gap-2">
 
-                        <span style={{ color: "#b7fecb" }} className="font-semibold">More Blogs</span>
+                        <span style={{ color: "#b7fecb" }} className="font-semibold">More Blog</span>
                         <ArrowRight size={16} style={{ color: "#b7fecb" }} />
                     </div>
                 </a>
+                }
           </motion.div>
     
 

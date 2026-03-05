@@ -10,17 +10,17 @@ const Navbar = () => {
 
   const menuItems = [
     { href: "/about", label: "About" },
-    { href: "/work", label: "Work" },
-    { href: "/projects", label: "Projects" },
+    { href: "/blogs", label: "Blogs" },
+    { href: "/project", label: "Projects" },
     { href: "/contact", label: "Contact" },
   ];
 
   return (
-    <div className="w-full flex justify-center fixed top-0 z-50 bg-black h-fit">
+    <div className="w-full flex justify-center fixed top-0 z-50 bg-black md:bg-transparent h-fit">
     <div className=" w-full max-w-407 px-5 py-10 flex justify-between items-start z-50">
       {/* Logo */}
       <div className="h-full items-start">
-        <h4 className="text-lg text-white cursor-pointer">IMRAN.DEV</h4>
+        <Link href='/' className="text-lg text-white cursor-pointer">IMRAN.DEV</Link>
       </div>
 
       {/* Menu */}

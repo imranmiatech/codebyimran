@@ -109,11 +109,11 @@ const Hero = () => {
             </a>
           </div>
           <div className="flex flex-col gap-y-5 order-1 md:order-2 md:gap-y-14 lg:gap-y-20">
-            <p className="text-[16px] font-[var(--font-space)] font-normal leading-[26px] text-white w-full md:max-w-[350px]">
+            <p className="text-[16px] font-[var(--font-space)] font-normal leading-[26px] text-white w-full md:max-w-[390px]">
               I craft fast, scalable, and user-friendly web applications with modern JavaScript frameworks — combining React on the frontend with robust server-side solutions using Node.js.
             </p>
 
-            <ul className="grid grid-cols-2 md:grid-cols-4 justify-between items-start text-[16px] font-[var(--font-space)] font-normal leading-[26px] text-white w-full md:max-w-[350px]">
+            <ul className="grid grid-cols-2 md:grid-cols-4 gap-3 justify-between items-start text-[16px] font-[var(--font-space)] font-normal leading-[26px] text-white w-full md:max-w-[390px]">
               <li className="group relative overflow-hidden cursor-pointer py-1">
                 <div className="transition-transform duration-300 ease-[cubic-bezier(0.2,0.9,0.3,1.1)] whitespace-nowrap group-hover:-translate-y-full">
                   <span className="text-[#7af298]">/</span> Twitter (x)

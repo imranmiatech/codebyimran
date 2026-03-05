@@ -184,7 +184,7 @@ export default function Services() {
 
   return (
     <section className="w-full bg-black text-white">
-      <div className="max-w-[1400px] mx-auto px-5 py-20 lg:py-28">
+      <div className="max-w-[1300px] mx-auto px-5 py-20 lg:py-28">
 
         {/* ── Top row: label left, heading right ── */}
         <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-6">
@@ -203,7 +203,7 @@ export default function Services() {
             ref={titleRef}
             className="text-white font-bold md:text-right"
             style={{
-              fontSize: "clamp(28px, 5vw, 72px)",
+              fontSize: "clamp(28px, 4vw, 48px)",
               lineHeight: 1.1,
               fontFamily: "var(--font-space)",
               maxWidth: 680,

@@ -124,7 +124,7 @@ export default function Process() {
 
     return (
         <section className="w-full bg-black text-white">
-            <div className="max-w-[1400px] mx-auto px-5 py-20 lg:py-28">
+            <div className="max-w-[1300px] mx-auto px-5 py-20 lg:py-28">
 
                 {/* ── Top row: label left, heading right ── */}
                 <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-6">

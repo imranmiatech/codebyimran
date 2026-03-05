@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 
@@ -41,6 +41,22 @@ const projects: Project[] = [
     },
     {
         title: "Lumin Studi",
+        description:
+            "LuminStudio blends elegance and clarity — a modern design agency template crafted to highlight creative work and impress potential clients",
+        image: "/imrans.png",
+        tags: ["HTML5 & Tailwind CSS", "React", "Vite"],
+        link: "#",
+    },
+    {
+        title: "Lumin Studie",
+        description:
+            "LuminStudio blends elegance and clarity — a modern design agency template crafted to highlight creative work and impress potential clients",
+        image: "/imrans.png",
+        tags: ["HTML5 & Tailwind CSS", "React", "Vite"],
+        link: "#",
+    },
+    {
+        title: "Lumin Studir",
         description:
             "LuminStudio blends elegance and clarity — a modern design agency template crafted to highlight creative work and impress potential clients",
         image: "/imrans.png",
@@ -176,19 +192,23 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
 
 // ─── Main ─────────────────────────────────────────────────────────────────────
 
-export default function Projects() {
+export default function ProjectPage() {
     const labelRef = useRef(null);
     const titleRef = useRef(null);
 
     const labelInView = useInView(labelRef, { once: true });
     const titleInView = useInView(titleRef, { once: true, margin: "-60px" });
+    const [showAll, setShowAll] = useState(false);
+
+    // Only show first 3 if showAll is false
+    const displayedProjects = showAll ? projects : projects.slice(0, 3);
 
     return (
         <section className="w-full bg-black text-white">
             <div className="max-w-[1300px] mx-auto px-5 py-20 lg:py-28">
 
                 {/* ── Top row: label left, title right ── */}
-                <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-6">
+                <div className=" w-full flex flex-col justify-center items-center gap-6">
 
                     {/* Label */}
                     <motion.p
@@ -199,13 +219,13 @@ export default function Projects() {
                         animate={labelInView ? { opacity: 1, y: 0 } : {}}
                         transition={{ duration: 0.45, ease: "easeOut" }}
                     >
-            // Explore Work
+                         // Explore Work
                     </motion.p>
 
                     {/* Big heading */}
                     <motion.h2
                         ref={titleRef}
-                        className="text-white font-bold text-left md:text-right"
+                        className="text-white font-bold w-full flex justify-center text-center"
                         style={{
                             fontSize: "clamp(32px, 4vw, 48px)",
                             lineHeight: 1.1,
@@ -216,7 +236,7 @@ export default function Projects() {
                         animate={titleInView ? { opacity: 1, y: 0 } : {}}
                         transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
                     >
-                        A Showcase of My<br />Latest Projects
+                        A Showcase of My Latest Projects
                     </motion.h2>
                 </div>
 
@@ -224,23 +244,24 @@ export default function Projects() {
                 <AnimatedLine />
 
                 {/* ── Projects grid ── */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-10 lg:gap-12 mt-4">
-                    {projects.map((project, i) => (
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-10 lg:gap-12 mt-4">
+                    {displayedProjects.map((project, i) => (
                         <ProjectCard key={project.title} project={project} index={i} />
                     ))}
                 </div>
-                
+
             </div>
-           <div className="w-full flex justify-center pb-10">
-             <a
+            <div className="w-full flex justify-center pb-10">
+                {!showAll && <a
                     href="#"
+                    onClick={() => setShowAll(!showAll)}
                     className="group relative overflow-hidden cursor-pointer py-1 w-fit flex items-center gap-2"
                     style={{ fontFamily: "var(--font-space)", fontSize: 16, textDecoration: "none" }}
                 >
                     {/* Default state */}
                     <div className="transition-transform duration-300 ease-[cubic-bezier(0.2,0.9,0.3,1.1)] whitespace-nowrap group-hover:-translate-y-full flex items-center gap-2">
 
-                        <span className="text-white font-semibold">My Resume</span>
+                        <span className="text-white font-semibold">More Project</span>
                         <ArrowUpRight size={16} className="text-white" />
                     </div>
                     {/* Hover state — slides up from below */}
@@ -250,7 +271,8 @@ export default function Projects() {
                         <ArrowRight size={16} style={{ color: "#b7fecb" }} />
                     </div>
                 </a>
-           </div>
+                }
+            </div>
         </section>
     );
 }

@@ -23,4 +23,20 @@ export const blogData = [
     date: "January 15, 2026",
     title: "System Design Principles Every Full-Stack Developer Should Know",
   },
+   {
+    id: "fullstack-systeme-design",
+    image: "/imran.jpg",
+    tag: "Full-Stack",
+    tagColor: "#7af298",
+    date: "January 15, 2026",
+    title: "System Design Principles Every Full-Stack Developer Should Know",
+  },
+   {
+    id: "fullstack-system-edesign",
+    image: "/imran.jpg",
+    tag: "Full-Stack",
+    tagColor: "#7af298",
+    date: "January 15, 2026",
+    title: "System Design Principles Every Full-Stack Developer Should Know",
+  },
 ];

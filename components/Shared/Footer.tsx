@@ -7,13 +7,13 @@ import Link from "next/link";
 // ─── Data ─────────────────────────────────────────────────────────────────────
 
 const quickLinks = ["HOME", "ABOUT", "WORKS", "BLOGS", "CONTACT"];
-const portfolio  = ["CONTRA", "GITHUB", "CODEPEN"];
-const social     = ["INSTAGRAM", "LINKEDIN", "TWITTER \"X\""];
+const portfolio = ["CONTRA", "GITHUB", "CODEPEN"];
+const social = ["INSTAGRAM", "LINKEDIN", "TWITTER \"X\""];
 
 // ─── Animated divider ─────────────────────────────────────────────────────────
 
 function AnimatedLine() {
-  const ref    = useRef(null);
+  const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-60px" });
 
   return (
@@ -40,8 +40,8 @@ function AnimatedLine() {
 // ─── Main ─────────────────────────────────────────────────────────────────────
 
 export default function Footer() {
-  const heroRef   = useRef<HTMLDivElement>(null);
-  const [pos, setPos]         = useState({ x: 0, y: 0 });
+  const heroRef = useRef<HTMLDivElement>(null);
+  const [pos, setPos] = useState({ x: 0, y: 0 });
   const [visible, setVisible] = useState(false);
 
   /* Track mouse inside the CTA hero area */
@@ -122,7 +122,7 @@ export default function Footer() {
 
       {/* ── Footer links ── */}
       <div className="max-w-[1400px] mx-auto px-5 py-12">
-        <div className="grid grid-cols-2 sm:grid-cols-3 gap-10">
+        <div className="grid grid-cols-2 sm:grid-cols-4 items-start justify-items-stretch gap-10">
 
           {/* Quick links */}
           <div className="flex flex-col gap-4">
@@ -216,26 +216,32 @@ export default function Footer() {
               </Link>
             ))}
           </div>
-          <div className="mt-14 flex  flex-col md:hidden gap-2">
-          <a
-            href="mailto:imranmiatech@gmail.com"
-            className="text-white font-semibold hover:text-[#7af298] transition-colors duration-300"
-            style={{ fontSize: "clamp(14px, 1.5vw, 18px)", fontFamily: "var(--font-space)" }}
-          >
-            imranmiatech@gmail.com
-          </a>
-          <a
-            href="tel:+8801943747529"
-            className="text-white font-semibold hover:text-[#7af298] transition-colors duration-300"
-            style={{ fontSize: "clamp(14px, 1.5vw, 18px)", fontFamily: "var(--font-space)" }}
-          >
-            +880 1943 747 529
-          </a>
-        </div>
+          <div className=" flex  flex-col items-start gap-2">
+             <span
+              className="font-semibold mb-1"
+              style={{ color: "#7af298", fontSize: 14, fontFamily: "var(--font-space)" }}
+            >
+              Contact
+            </span>
+            <a
+              href="mailto:imranmiatech@gmail.com"
+              className="text-white font-semibold hover:text-[#7af298] transition-colors duration-300"
+              style={{ fontSize: "clamp(14px, 1.5vw, 18px)", fontFamily: "var(--font-space)" }}
+            >
+              imranmiatech@gmail.com
+            </a>
+            <a
+              href="tel:+8801943747529"
+              className="text-white font-semibold hover:text-[#7af298] transition-colors duration-300"
+              style={{ fontSize: "clamp(14px, 1.5vw, 18px)", fontFamily: "var(--font-space)" }}
+            >
+              +880 1943 747 529
+            </a>
+          </div>
         </div>
 
         {/* ── Bottom contact ── */}
-        <div className="mt-14 hidden md:flex flex-col gap-2">
+        {/* <div className="mt-14 hidden md:flex flex-col gap-2">
           <a
             href="mailto:imranmiatech@gmail.com"
             className="text-white font-semibold hover:text-[#7af298] transition-colors duration-300"
@@ -250,7 +256,7 @@ export default function Footer() {
           >
             +880 1943 747 529
           </a>
-        </div>
+        </div> */}
       </div>
 
     </footer>

@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { Space_Grotesk } from "next/font/google";
+import Navbar from "../components/Shared/Navber";
+import Footer from "../components/Shared/Footer";
 import "./globals.css";
 
 // Space Grotesk 600
@@ -36,9 +38,16 @@ export default function RootLayout({
       lang="en"
       className={`${spaceGrotesk.variable} ${geistSans.variable} ${geistMono.variable}`}
     >
-      <body className="">{children}</body>
+      <body className="bg-[#0a0a0a] text-white">
+        {/* Navbar is here */}
+        <Navbar />
+
+        {/* Page content */}
+        <main className="pt-20">{children}</main> {/* pt-20 avoids content being under Navbar */}
+
+        {/* Footer is here */}
+        <Footer />
+      </body>
     </html>
   );
 }
-
-

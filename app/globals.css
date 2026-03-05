@@ -76,3 +76,12 @@
 body {
   font-family: var(--font-space);
 }
+
+/* tailwind-compatible CSS (if using @layer utilities) */
+.floating-icon {
+  @apply absolute opacity-100; /* start visible */
+  pointer-events: none;       /* icons won't block clicks */
+  top: 50%;                   /* center relative to parent */
+  left: 50%;
+  transform: translate(-50%, -50%); /* center the icon initially */
+}

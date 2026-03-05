@@ -349,7 +349,7 @@ export default function Skills() {
 
   return (
     <section className="w-full bg-black text-white">
-      <div className="max-w-[1400px] mx-auto px-5 py-20 lg:py-28">
+      <div className="max-w-[1300px] mx-auto px-5 py-20 lg:py-28">
 
         {/* ── Label ── */}
         <motion.p
