@@ -154,7 +154,7 @@ export default function AboutHero() {
   }, []);
 
   return (
-    <div ref={container} className="relative bg-[#0a0a0a] text-white">
+    <div ref={container} className="relative w-full pt-20 md:pt-5 lg:pt-0 bg-[#181010] text-white">
 
       {/* Hero Section */}
       <section className="relative flex flex-col items-center justify-center text-center px-4 min-h-screen">
@@ -174,7 +174,7 @@ export default function AboutHero() {
         {/* Image */}
         <div
           ref={imageRef}
-          className="relative z-20 flex items-center justify-center mt-16"
+          className="w-full relative z-20 flex items-center justify-center mt-16"
           /* Remove pointer-events from the image wrapper so icons
              underneath don't accidentally capture hover and get
              pulled toward the cursor center */

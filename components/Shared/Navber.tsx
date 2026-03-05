@@ -16,21 +16,21 @@ const Navbar = () => {
   ];
 
   return (
-    <div className="w-full flex justify-center fixed top-0 z-50 bg-black md:bg-transparent h-fit">
+    <div className="w-full flex justify-center fixed top-0 z-50   h-fit">
     <div className=" w-full max-w-407 px-5 py-10 flex justify-between items-start z-50">
       {/* Logo */}
       <div className="h-full items-start">
-        <Link href='/' className="text-lg text-white cursor-pointer">IMRAN.DEV</Link>
+        <Link href='/' className="text-[16px] xl:text-xl text-white cursor-pointer">IMRAN.DEV</Link>
       </div>
 
       {/* Menu */}
       <div className="relative">
         <button
           onClick={() => setOpen((prev) => !prev)}
-          className={`bg-white text-slate-800 font-semibold text-[16px] leading-[1.4] 
-            flex flex-col items-start px-5 py-3 transition-colors duration-300
+          className={`bg-white text-slate-800 font-semibold text-[14px] lg:text-[16px] leading-[1.4] 
+            flex flex-col items-start px-4 md:px-5 py-3 transition-colors duration-300
             ${open ? "rounded-xl" : "rounded-4xl hover:bg-[#7af298]"} 
-            cursor-pointer w-44`}
+            cursor-pointer w-36 md:w-44`}
         >
           {/* Top row */}
           <div className="flex justify-between items-center w-full">

@@ -38,12 +38,12 @@ export default function RootLayout({
       lang="en"
       className={`${spaceGrotesk.variable} ${geistSans.variable} ${geistMono.variable}`}
     >
-      <body className="bg-[#0a0a0a] text-white">
+      <body className="bg-[#181010] text-white">
         {/* Navbar is here */}
         <Navbar />
 
         {/* Page content */}
-        <main className="pt-20">{children}</main> {/* pt-20 avoids content being under Navbar */}
+        <main className="">{children}</main> {/* pt-20 avoids content being under Navbar */}
 
         {/* Footer is here */}
         <Footer />

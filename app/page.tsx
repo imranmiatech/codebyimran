@@ -1,5 +1,3 @@
-
-
 import { blogData } from "@/components/Home/BlogData";
 import Blogs from "@/components/Home/Blogs";
 import Clients from "@/components/Home/Clients";
@@ -11,15 +9,12 @@ import Services from "@/components/Home/Services";
 import Skills from "@/components/Home/Skills";
 import Testimonials from "@/components/Home/Testimonials";
 
-
-
 export default function Home() {
   return (
-    <div className="flex flex-col bg-black  w-full items-center justify-center">
+    <div className="">
 
         <Hero />
         <ScrollImages />
-        {/* <Images /> */}
         <Skills />
         <Projects />
         <Services />
@@ -27,8 +22,6 @@ export default function Home() {
         <Testimonials />
         <Clients />
         <Blogs blogs={blogData} />
-
-
     </div>
   );
 }

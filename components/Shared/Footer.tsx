@@ -52,23 +52,25 @@ export default function Footer() {
   };
 
   return (
-    <footer className="w-full bg-black text-white overflow-hidden">
+    <footer className="w-full text-white overflow-hidden">
 
       {/* ── CTA hero ── */}
       <div
         ref={heroRef}
-        className="relative w-full flex items-center justify-center overflow-hidden cursor-none"
-        style={{ minHeight: "45vh", paddingTop: "6vh", paddingBottom: "6vh" }}
+        className="relative w-full flex items-center pt-[6vh] md:pt-[25vh] pb-[6vh] justify-center overflow-visible cursor-none"
+        style={{ minHeight: "45vh", }}
         onMouseMove={handleMouseMove}
         onMouseEnter={() => setVisible(true)}
         onMouseLeave={() => setVisible(false)}
       >
         {/* Green radial glow — always centered */}
         <div
-          className="absolute inset-0 pointer-events-none"
+          className="absolute top-[80px]  w-[1000px] h-[700px] pointer-events-none blur-[120px] opacity-90"
           style={{
-            background:
-              "radial-gradient(ellipse 70% 70% at 50% 55%, rgba(40,180,80,0.28) 0%, rgba(20,100,50,0.12) 50%, transparent 75%)",
+            background: `
+      radial-gradient(circle at 70% 30%, rgba(255,255,255,0.45) 0%, rgba(255,255,255,0.15) 20%, transparent 45%),
+      radial-gradient(circle at 60% 40%, rgba(74,254,139,0.55) 0%, rgba(40,180,80,0.35) 40%, rgba(20,100,50,0.2) 70%, transparent 100%)
+    `,
           }}
         />
 
@@ -98,30 +100,30 @@ export default function Footer() {
         {/* Big CTA text */}
         <div className="relative z-10 text-center px-5 select-none">
           <h2
-            className="font-black uppercase leading-none text-white"
+            className="font-bold uppercase leading-none text-white"
             style={{
-              fontSize: "clamp(42px, 9vw, 130px)",
+              fontSize: "clamp(42px, 5vw, 90px)",
               fontFamily: "var(--font-space)",
               letterSpacing: "-0.02em",
               lineHeight: 1.05,
             }}
           >
             READY TO TAKE YOUR<br />
-            IDEA TO{" "}
+            IDEA TO
             {/* Spacer where the ball hovers */}
-            <span style={{ display: "inline-block", width: "clamp(100px, 12vw, 160px)" }} /><br />
+            <span style={{ display: "inline-block", width: "clamp(42px, 5vw, 90px)" }} /><br />
             THE NEXT LEVEL?
           </h2>
         </div>
       </div>
 
       {/* ── Divider ── */}
-      <div className="max-w-[1400px] mx-auto px-5 pb-6">
+      <div className="max-w-[1628px] mx-auto px-5 pb-6">
         <AnimatedLine />
       </div>
 
       {/* ── Footer links ── */}
-      <div className="max-w-[1400px] mx-auto px-5 py-12">
+      <div className="max-w-[1628px] mx-auto px-5 py-12">
         <div className="grid grid-cols-2 sm:grid-cols-4 items-start justify-items-stretch gap-10">
 
           {/* Quick links */}
@@ -217,7 +219,7 @@ export default function Footer() {
             ))}
           </div>
           <div className=" flex  flex-col items-start gap-2">
-             <span
+            <span
               className="font-semibold mb-1"
               style={{ color: "#7af298", fontSize: 14, fontFamily: "var(--font-space)" }}
             >
@@ -240,23 +242,7 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* ── Bottom contact ── */}
-        {/* <div className="mt-14 hidden md:flex flex-col gap-2">
-          <a
-            href="mailto:imranmiatech@gmail.com"
-            className="text-white font-semibold hover:text-[#7af298] transition-colors duration-300"
-            style={{ fontSize: "clamp(14px, 1.5vw, 18px)", fontFamily: "var(--font-space)" }}
-          >
-            imranmiatech@gmail.com
-          </a>
-          <a
-            href="tel:+8801943747529"
-            className="text-white font-semibold hover:text-[#7af298] transition-colors duration-300"
-            style={{ fontSize: "clamp(14px, 1.5vw, 18px)", fontFamily: "var(--font-space)" }}
-          >
-            +880 1943 747 529
-          </a>
-        </div> */}
+
       </div>
 
     </footer>
