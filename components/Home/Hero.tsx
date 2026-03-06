@@ -1,24 +1,71 @@
 "use client";
+import { useEffect, useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 const Hero = () => {
+  const container = useRef(null);
+  const imageRef = useRef(null);
+  gsap.registerPlugin(ScrollTrigger);
+  useEffect(() => {
+    gsap.registerPlugin(ScrollTrigger);
+
+    const ctx = gsap.context(() => {
+
+      // TEXT ANIMATION
+      gsap.from(".blur-text", {
+        y: 60,
+        opacity: 0,
+        filter: "blur(12px)",
+        duration: 1.2,
+        ease: "power3.out",
+        stagger: 0.25,
+      });
+
+      // IMAGE APPEAR
+      gsap.from(imageRef.current, {
+        y: 120,
+        opacity: 0,
+        duration: 1.4,
+        ease: "power3.out",
+        delay: 0.4
+      });
+
+      // PARALLAX SCROLL
+      gsap.to(imageRef.current, {
+        y: -200,
+        ease: "none",
+        scrollTrigger: {
+          trigger: imageRef.current,
+          start: "top 90%",
+          end: "bottom top",
+          scrub: 1
+        }
+      });
+
+    }, container);
+
+    return () => ctx.revert();
+  }, []);
   return (
-    <div className="relative w-full lg:min-h-screen bg-black overflow-hidden flex pt-40 pb-10 justify-center">
+    <div className="relative w-full lg:min-h-screen bg-black  flex pt-40 pb-10 justify-center">
 
       {/* ── Tablet+ image: absolute, centered horizontally, sits between name and bottom row ── */}
       <div
+        ref={imageRef}
+
         className="hidden md:block absolute left-1/2 -translate-x-1/2 z-10 pointer-events-none"
         style={{
-          top: "clamp(180px, 28vw, 320px)",
+          top: "clamp(240px, 32vw, 420px)",
           width: "clamp(260px, 36vw, 520px)",
         }}
       >
         {/* Glow lives here — always behind this image */}
         <div
-          className="absolute inset-0 pointer-events-none"
+          className="absolute -inset-40 blur-[80px] pointer-events-none"
           style={{
             background:
-              "radial-gradient(ellipse 100% 70% at 50% 40%, rgba(50,200,80,0.30) 0%, rgba(30,140,60,0.15) 45%, transparent 70%)",
-            transform: "scale(1.8)",
+              "radial-gradient(circle at 50% 40%, rgba(80,255,120,0.35), transparent 70%)",
             zIndex: -1,
           }}
         />
@@ -37,15 +84,15 @@ const Hero = () => {
       <div className="relative w-full flex flex-col max-w-407 z-40 px-5">
 
         {/* Name block */}
-        <div className="flex flex-col">
-          <h6 className="text-[clamp(18px,3vw,24px)] font-[var(--font-space)] leading-[1.4] text-white font-bold text-left">
-            Hey, 👋 I'm a Full Stack Developer
+        <div ref={container} className="flex flex-col">
+          <h6 className="blur-text text-[clamp(18px,3vw,24px)] font-[var(--font-space)] leading-[1.4] text-white font-bold text-left">
+            Hey, <span className="wave-hand inline-block">👋</span> I'm a Full Stack Developer
           </h6>
-          <h1 className="text-[clamp(70px,10vw,168px)] font-[var(--font-space)] leading-[100%] text-[#7af298] font-bold text-left">
+
+          <h1 className="blur-text text-[clamp(70px,10vw,168px)] font-[var(--font-space)] leading-[100%] text-[#7af298] font-bold text-left">
             MD IMRAN
           </h1>
         </div>
-
         {/* ── Mobile only: image + scroll side by side ── */}
         <div className="flex md:hidden w-full mt-6 items-end">
           {/* Image takes most of the width */}
@@ -86,7 +133,7 @@ const Hero = () => {
             <div className="relative w-px h-20 bg-[#7af298] overflow-hidden">
               <div className="absolute top-0 left-0 w-px h-5 bg-[#ffff] animate-lineMove"></div>
             </div>
-            <span className="uppercase font-[var(--font-space)] text-[16px] font-semibold text-white tracking-[0.3em] [writing-mode:vertical-rl] rotate-180">
+            <span className="uppercase  text-[16px] font-semibold text-white tracking-[0.3em] [writing-mode:vertical-rl] rotate-180">
               Scroll
             </span>
           </div>
