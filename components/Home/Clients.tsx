@@ -20,7 +20,7 @@ function AnimatedLine() {
   const inView = useInView(ref, { once: true, margin: "-60px" });
 
   return (
-    <div ref={ref} className="relative w-full flex items-center gap-2 my-8 md:my-10">
+    <div ref={ref} className="relative w-full flex  items-center gap-2 my-8 md:my-10">
       <span className="font-mono font-bold shrink-0 text-sm" style={{ color: "#7af298" }}>
         {"</"}
       </span>
@@ -52,8 +52,8 @@ export default function Clients() {
   const gridInView  = useInView(gridRef,  { once: true, margin: "-60px" });
 
   return (
-    <section className="w-full bg-black text-white">
-      <div className="max-w-[1400px] mx-auto px-5 py-20 lg:py-28">
+    <section className="w-full bg-[#191818]  text-white">
+      <div className="max-w-[1250px] mx-auto px-5 py-20 lg:py-28">
 
         {/* ── Top row ── */}
         <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-6">

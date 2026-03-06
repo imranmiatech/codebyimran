@@ -157,7 +157,7 @@ export default function AboutHero() {
     <div ref={container} className="relative w-full pt-20 md:pt-5 lg:pt-0 bg-[#181010] text-white">
 
       {/* Hero Section */}
-      <section className="relative flex flex-col items-center justify-center text-center px-4 min-h-screen">
+      <section className="relative flex flex-col lg:pt-20 items-center justify-center text-center px-4 min-h-screen">
 
         <div ref={titleContainerRef} className="z-10 mb-4 transition-transform">
           <p className="hero-hello text-emerald-500 font-mono text-sm mb-4 tracking-widest uppercase">

@@ -320,7 +320,7 @@ export default function Experience() {
 
   return (
     <section className="w-full bg-[#181a18] text-white">
-      <div className="max-w-[1300px] mx-auto px-5 py-20 lg:py-28">
+      <div className="max-w-[1250px] mx-auto px-5 py-20 lg:py-28">
         {/* Top row */}
         <div className="flex items-start justify-between mb-8">
           <motion.p

@@ -123,8 +123,8 @@ export default function Process() {
     const titleInView = useInView(titleRef, { once: true, margin: "-60px" });
 
     return (
-        <section className="w-full bg-black text-white">
-            <div className="max-w-[1300px] mx-auto px-5 py-20 lg:py-28">
+        <section className="w-full bg-[#191818] text-white">
+            <div className="max-w-[1250px] mx-auto px-5 py-20 lg:py-28">
 
                 {/* ── Top row: label left, heading right ── */}
                 <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-6">

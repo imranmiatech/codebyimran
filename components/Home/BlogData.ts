@@ -1,14 +1,14 @@
 export const blogData = [
   {
-    id: "modern-react-architecture",
+    slug: "blogone",
     image: "/imran.jpg",
     tag: "Development",
     tagColor: "#7af298",
     date: "March 04, 2026",
-    title: "Modern React Architecture for Scalable Applications",
+    title: "Modern React Architecture for Scalable Applications"
   },
   {
-    id: "nextjs-performance",
+    slug: "blogtwo",
     image: "/imran.jpg",
     tag: "Next.js",
     tagColor: "#7af298",
@@ -16,27 +16,13 @@ export const blogData = [
     title: "Optimizing Next.js Apps for Maximum Performance",
   },
   {
-    id: "fullstack-system-design",
+    slug: "blogthree",
     image: "/imran.jpg",
     tag: "Full-Stack",
     tagColor: "#7af298",
     date: "January 15, 2026",
-    title: "System Design Principles Every Full-Stack Developer Should Know",
+    title: "System Design Principles Every Full-Stack Developer Should Know"
   },
-   {
-    id: "fullstack-systeme-design",
-    image: "/imran.jpg",
-    tag: "Full-Stack",
-    tagColor: "#7af298",
-    date: "January 15, 2026",
-    title: "System Design Principles Every Full-Stack Developer Should Know",
-  },
-   {
-    id: "fullstack-system-edesign",
-    image: "/imran.jpg",
-    tag: "Full-Stack",
-    tagColor: "#7af298",
-    date: "January 15, 2026",
-    title: "System Design Principles Every Full-Stack Developer Should Know",
-  },
+ 
+  
 ];

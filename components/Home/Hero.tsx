@@ -11,14 +11,19 @@ const Hero = () => {
   gsap.registerPlugin(ScrollTrigger);
 
   const appearVariant: Variants = {
-    hidden: { y: 50, opacity: 0 },
+    hidden: { y: 30, opacity: 0 },
     visible: (i: number) => ({
       y: 0,
       opacity: 1,
       transition: { duration: 0.8, delay: i * 0.15, ease: "easeOut" },
     }),
   };
-  const links = ["Twitter (x)", "LinkedIn", "Github", "Facebook"];
+  const links = [
+    { name: "Whatsapp", href: "https://wa.me/8801943747529" },
+    { name: "LinkedIn", href: "https://linkedin.com/in/imranmiatech" },
+    { name: "Github", href: "https://github.com/imranmiatech" },
+    { name: "Facebook", href: "https://facebook.com/md.imran.428063" },
+  ];
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
@@ -97,15 +102,15 @@ const Hero = () => {
     return () => ctx.revert();
   }, []);
   return (
-    <div className="relative w-full lg:min-h-screen bg-black  flex pt-40 pb-10 justify-center">
+    <div className="relative w-full lg:min-h-screen  flex pt-40 pb-10 justify-center">
 
       {/* ── Tablet+ image: absolute, centered horizontally, sits between name and bottom row ── */}
       <div
         ref={imageRef}
 
-        className="hidden md:block absolute left-1/2 -translate-x-1/2 z-10 pointer-events-none"
+        className="hidden md:block absolute left-1/2   -translate-x-1/2 z-10 pointer-events-none"
         style={{
-          top: "clamp(240px, 32vw, 420px)",
+          top: "clamp(240px, 26vw, 420px)",
           width: "clamp(260px, 36vw, 520px)",
         }}
       >
@@ -178,7 +183,7 @@ const Hero = () => {
 
         {/* ── Desktop scroll indicator (hidden on mobile) ── */}
         {/* Scroll indicator */}
-        <div className="hidden md:flex w-full right-0 flex-col pt-5 md:pt-12 lg:pt-20 items-end gap-y-4">
+        <div className="hidden md:flex w-full right-0 flex-col pt-5 md:pt-8  2xl:pt-20 items-end gap-y-4">
           <div className="w-fit flex flex-col items-center">
             <div className="relative w-px h-20 bg-[#7af298] overflow-hidden">
               <div ref={scrollLineRef} className="absolute top-0 left-0 w-px h-full bg-white"></div>
@@ -193,61 +198,63 @@ const Hero = () => {
         </div>
 
         {/* Bottom row */}
-         <div className="w-full flex flex-col md:flex-row pt-5 md:pt-12 lg:pt-20 items-end justify-between">
-      {/* Left Column */}
-      <div className="flex flex-col gap-y-2 w-full md:w-fit items-start pt-5 md:pt-0 order-2 md:order-1 text-white">
-        {["Email: imranmiatech@gmail.com", "+880 1943747529"].map((text, i) => (
-          <motion.a
-            key={i}
-            href={text.includes("Email") ? "mailto:imranmiatech@gmail.com" : "tel:+8801943747529"}
-            variants={appearVariant}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            custom={i}
-            className="font-[var(--font-space)] font-semibold text-left hover:underline transition-colors duration-300"
-          >
-            {text}
-          </motion.a>
-        ))}
-      </div>
+        <div className="w-full flex flex-col md:flex-row pt-5 md:pt-10 2xl:pt-20 items-end justify-between">
+          {/* Left Column */}
+          <div className="flex flex-col gap-y-2 w-full md:w-fit items-start pt-5 md:pt-0 order-2 md:order-1 text-white">
+            {["Email: imranmiatech@gmail.com", "+880 1943747529"].map((text, i) => (
+              <motion.a
+                key={i}
+                href={text.includes("Email") ? "mailto:imranmiatech@gmail.com" : "tel:+8801943747529"}
+                variants={appearVariant}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                custom={i}
+                className="font-[var(--font-space)] font-semibold text-left hover:underline transition-colors duration-300"
+              >
+                {text}
+              </motion.a>
+            ))}
+          </div>
 
-      {/* Right Column */}
-      <div className="flex flex-col gap-y-5 order-1 md:order-2 md:gap-y-14 lg:gap-y-20">
-        <motion.p
-          variants={appearVariant}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          custom={0}
-          className="text-[16px] font-[var(--font-space)] font-normal leading-[26px] text-white w-full md:max-w-[390px]"
-        >
-          I craft fast, scalable, and user-friendly web applications with modern JavaScript frameworks — combining React on the frontend with robust server-side solutions using Node.js.
-        </motion.p>
-
-        <ul className="grid grid-cols-2 md:grid-cols-4 gap-3 justify-between items-start text-[16px] font-[var(--font-space)] font-normal leading-[26px] text-white w-full md:max-w-[390px]">
-          {links.map((name, i) => (
-            <motion.li
-              key={i}
+          {/* Right Column */}
+          <div className="flex flex-col gap-y-5 order-1 md:order-2 md:gap-y-8 2xl:gap-y-15">
+            <motion.p
               variants={appearVariant}
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
-              custom={i + 1} // offset delay after paragraph
-              className="group relative overflow-hidden cursor-pointer py-1"
+              custom={0}
+              className="text-[16px] font-[var(--font-space)] font-normal leading-[26px] text-white w-full md:max-w-[600px]"
             >
-              <div className="transition-transform duration-300 ease-[cubic-bezier(0.2,0.9,0.3,1.1)] whitespace-nowrap group-hover:-translate-y-full">
-                <span className="text-[#7af298]">/</span> {name}
-              </div>
-              <div className="absolute left-0 top-full translate-y-0 transition-transform duration-300 ease-[cubic-bezier(0.2,0.9,0.3,1.1)] group-hover:translate-y-[-100%] whitespace-nowrap">
-                <span className="text-[#7af298]">/</span>{" "}
-                <span className="text-[#b7fecb]">{name}</span>
-              </div>
-            </motion.li>
-          ))}
-        </ul>
-      </div>
-    </div>
+              I’m Md Imran Mia, Dedicated and enthusiastic software engineer with strong skills in programming, and web development. Seeking to leverage expertise on real-world projects in a collaborative environment. Actively seeking opportunities to apply and advance technical expertise while making meaningful contributions.
+            </motion.p>
+
+            <ul className="grid grid-cols-2 md:grid-cols-4 gap-3 justify-between items-start text-[16px] font-[var(--font-space)] font-normal leading-[26px] text-white w-full md:max-w-[390px]">
+              {links.map((link, i) => (
+                <motion.li
+                  key={i}
+                  variants={appearVariant}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true }}
+                  custom={i + 1}
+                  className="group relative overflow-hidden cursor-pointer py-1"
+                >
+                  <a href={link.href} target="_blank" rel="noopener noreferrer">
+                    <div className="transition-transform duration-300 ease-[cubic-bezier(0.2,0.9,0.3,1.1)] whitespace-nowrap group-hover:-translate-y-full">
+                      <span className="text-[#7af298]">/</span> {link.name}
+                    </div>
+                    <div className="absolute left-0 top-full translate-y-0 transition-transform duration-300 ease-[cubic-bezier(0.2,0.9,0.3,1.1)] group-hover:translate-y-[-100%] whitespace-nowrap">
+                      <span className="text-[#7af298]">/</span>{" "}
+                      <span className="text-[#b7fecb]">{link.name}</span>
+                    </div>
+                  </a>
+                </motion.li>
+              ))}
+            </ul>
+          </div>
+        </div>
       </div>
 
     </div>
@@ -255,3 +262,4 @@ const Hero = () => {
 };
 
 export default Hero;
+

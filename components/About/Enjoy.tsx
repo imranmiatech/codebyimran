@@ -24,7 +24,7 @@ const Enjoy = () => {
                     Life for me is about balance — doing what I love, staying curious, and finding joy in both the small wins and big milestones.
                 </p>
             </div>
-            <section className="max-w-7xl flex flex-col relative z-40 gap-y-5  md:gap-y-35 lg:gap-y-50 mx-auto px-4 py-16">
+            <section className="max-w-[1250px] flex flex-col relative z-40 gap-y-5  md:gap-y-35 lg:gap-y-50 mx-auto px-5 py-16">
                 {/* Row 1: 2 Images */}
                 <div className="flex flex-col gap-y-5  md:flex-row md:justify-between">
                     <Image src={images[0]} alt="Gallery Image 1" width={180} height={232} className="w-full md:w-[180px] md:h-[232px] h-auto rounded-lg object-cover" />

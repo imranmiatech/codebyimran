@@ -8,7 +8,7 @@ import { ArrowRight, ArrowUpRight } from "lucide-react";
 // ─── Types ────────────────────────────────────────────────────────────────────
 
 export interface Blog {
-  id: string;
+  slug: string;
   image: string;
   tag: string;
   tagColor: string;
@@ -62,8 +62,7 @@ function BlogCard({ blog, index }: { blog: Blog; index: number }) {
       animate={inView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.6, delay: index * 0.12, ease: [0.22, 1, 0.36, 1] }}
     >
-      <Link
-        href={`/blogs/${blog.id}`}
+      <Link href={`/${blog.slug}`} 
         className="flex flex-col gap-4 group cursor-pointer"
         style={{ textDecoration: "none" }}
       >
@@ -127,10 +126,10 @@ export default function Blog({ blogs }: BlogsProps) {
 
   return (
     <section className="w-full bg-black text-white">
-      <div className="max-w-[1300px] mx-auto px-5 py-20 lg:py-28">
+      <div className="max-w-[1250px] mx-auto px-5 py-20 lg:py-28">
 
         {/* ── Top row ── */}
-        <div className=" w-full flex flex-col justify-center items-center gap-6">
+        <div className=" w-full flex flex-col justify-center pt-10 items-center gap-6">
 
                     {/* Label */}
                     <motion.p
@@ -168,7 +167,7 @@ export default function Blog({ blogs }: BlogsProps) {
         {/* ── Blog grid ── */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
           {displayedBlogs?.map((blog, i) => (
-            <BlogCard key={blog.id} blog={blog} index={i} />
+            <BlogCard key={blog.slug} blog={blog} index={i} />
           ))}
         </div>
 

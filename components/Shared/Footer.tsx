@@ -52,7 +52,7 @@ export default function Footer() {
   };
 
   return (
-    <footer className="w-full text-white overflow-hidden">
+    <footer className="w-full text-white overflow-visible">
 
       {/* ── CTA hero ── */}
       <div

@@ -222,8 +222,12 @@ import { ArrowRight, ArrowUpRight } from "lucide-react";
 
 const skills = [
   {
+    title: "Languages",
+    tags: [ "JavaScript", "Typescript", "Basic Python"],
+  },
+  {
     title: "Frontend",
-    tags: ["HTML", "CSS", "JavaScript", "React", "Tailwind CSS", "Typescript", "Next"],
+    tags: ["HTML", "CSS", "JavaScript", "React", "Tailwind CSS", "Redux Toolkit", "Typescript", "Next"],
   },
   {
     title: "Backend development",
@@ -348,8 +352,8 @@ export default function Skills() {
   const statsInView = useInView(statsRef, { once: true, margin: "-60px" });
 
   return (
-    <section className="w-full bg-black text-white">
-      <div className="max-w-[1300px] mx-auto px-5 py-20 lg:py-28">
+    <section className="w-full  text-white">
+      <div className="max-w-[1250px] mx-auto px-5 py-20 lg:py-28">
 
         {/* ── Label ── */}
         <motion.p
@@ -364,7 +368,7 @@ export default function Skills() {
         </motion.p>
 
         {/* ── Two-column grid ── */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 lg:gap-16 items-start">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 lg:gap-16 items-center">
 
           {/* Left — skill rows */}
           <div>
@@ -425,7 +429,7 @@ export default function Skills() {
             <motion.div
               key={s.label}
               className={[
-                "flex flex-col items-center sm:items-start py-8 px-4 sm:px-6",
+                "flex flex-col items-center  py-8 px-4 sm:px-6",
                 "border-b border-white/10",
                 i !== stats.length - 1 ? "sm:border-r sm:border-white/10" : "",
               ].join(" ")}
