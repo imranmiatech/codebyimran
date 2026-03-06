@@ -2,11 +2,24 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-
+import { motion, Variants } from "framer-motion";
 const Hero = () => {
   const container = useRef(null);
   const imageRef = useRef(null);
+  const scrollLineRef = useRef<HTMLDivElement>(null);
+  const scrollTextRef = useRef<HTMLSpanElement>(null);
   gsap.registerPlugin(ScrollTrigger);
+
+  const appearVariant: Variants = {
+    hidden: { y: 50, opacity: 0 },
+    visible: (i: number) => ({
+      y: 0,
+      opacity: 1,
+      transition: { duration: 0.8, delay: i * 0.15, ease: "easeOut" },
+    }),
+  };
+  const links = ["Twitter (x)", "LinkedIn", "Github", "Facebook"];
+
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
 
@@ -42,6 +55,42 @@ const Hero = () => {
           scrub: 1
         }
       });
+
+      // -------------------- Scroll Line Animation --------------------
+      if (scrollLineRef.current) {
+        gsap.fromTo(
+          scrollLineRef.current,
+          { height: 0 },
+          {
+            height: "100%",
+            duration: 1.2,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: scrollLineRef.current,
+              start: "top 90%",
+            },
+          }
+        );
+      }
+
+      // -------------------- Scroll Text Animation --------------------
+      if (scrollTextRef.current) {
+        gsap.from(scrollTextRef.current, {
+          opacity: 0,
+          y: 10,
+          filter: "blur(6px)",
+          duration: 1,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: scrollTextRef.current,
+            start: "top 90%",
+          },
+        });
+      }
+      //--------------------links-------------
+
+
+
 
     }, container);
 
@@ -128,81 +177,77 @@ const Hero = () => {
         </div>
 
         {/* ── Desktop scroll indicator (hidden on mobile) ── */}
+        {/* Scroll indicator */}
         <div className="hidden md:flex w-full right-0 flex-col pt-5 md:pt-12 lg:pt-20 items-end gap-y-4">
           <div className="w-fit flex flex-col items-center">
             <div className="relative w-px h-20 bg-[#7af298] overflow-hidden">
-              <div className="absolute top-0 left-0 w-px h-5 bg-[#ffff] animate-lineMove"></div>
+              <div ref={scrollLineRef} className="absolute top-0 left-0 w-px h-full bg-white"></div>
             </div>
-            <span className="uppercase  text-[16px] font-semibold text-white tracking-[0.3em] [writing-mode:vertical-rl] rotate-180">
+            <span
+              ref={scrollTextRef}
+              className="uppercase text-[16px] font-semibold text-white tracking-[0.3em] [writing-mode:vertical-rl] rotate-180"
+            >
               Scroll
             </span>
           </div>
         </div>
 
         {/* Bottom row */}
-        <div className="w-full flex flex-col md:flex-row pt-5 md:pt-12 lg:pt-20 items-end justify-between">
-          <div className="flex flex-col gap-y-2 w-full md:w-fit items-start pt-5 md:pt-0 order-2 md:order-1 text-white">
-            <a
-              href="mailto:imranmiatech@gmail.com"
-              className="font-[var(--font-space)] font-semibold text-left hover:underline transition-colors duration-300"
+         <div className="w-full flex flex-col md:flex-row pt-5 md:pt-12 lg:pt-20 items-end justify-between">
+      {/* Left Column */}
+      <div className="flex flex-col gap-y-2 w-full md:w-fit items-start pt-5 md:pt-0 order-2 md:order-1 text-white">
+        {["Email: imranmiatech@gmail.com", "+880 1943747529"].map((text, i) => (
+          <motion.a
+            key={i}
+            href={text.includes("Email") ? "mailto:imranmiatech@gmail.com" : "tel:+8801943747529"}
+            variants={appearVariant}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            custom={i}
+            className="font-[var(--font-space)] font-semibold text-left hover:underline transition-colors duration-300"
+          >
+            {text}
+          </motion.a>
+        ))}
+      </div>
+
+      {/* Right Column */}
+      <div className="flex flex-col gap-y-5 order-1 md:order-2 md:gap-y-14 lg:gap-y-20">
+        <motion.p
+          variants={appearVariant}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          custom={0}
+          className="text-[16px] font-[var(--font-space)] font-normal leading-[26px] text-white w-full md:max-w-[390px]"
+        >
+          I craft fast, scalable, and user-friendly web applications with modern JavaScript frameworks — combining React on the frontend with robust server-side solutions using Node.js.
+        </motion.p>
+
+        <ul className="grid grid-cols-2 md:grid-cols-4 gap-3 justify-between items-start text-[16px] font-[var(--font-space)] font-normal leading-[26px] text-white w-full md:max-w-[390px]">
+          {links.map((name, i) => (
+            <motion.li
+              key={i}
+              variants={appearVariant}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              custom={i + 1} // offset delay after paragraph
+              className="group relative overflow-hidden cursor-pointer py-1"
             >
-              Email: imranmiatech@gmail.com
-            </a>
-            <a
-              href="tel:+8801943747529"
-              className="font-[var(--font-space)] font-semibold text-left hover:underline transition-colors duration-300"
-            >
-              +880 1943747529
-            </a>
-          </div>
-          <div className="flex flex-col gap-y-5 order-1 md:order-2 md:gap-y-14 lg:gap-y-20">
-            <p className="text-[16px] font-[var(--font-space)] font-normal leading-[26px] text-white w-full md:max-w-[390px]">
-              I craft fast, scalable, and user-friendly web applications with modern JavaScript frameworks — combining React on the frontend with robust server-side solutions using Node.js.
-            </p>
-
-            <ul className="grid grid-cols-2 md:grid-cols-4 gap-3 justify-between items-start text-[16px] font-[var(--font-space)] font-normal leading-[26px] text-white w-full md:max-w-[390px]">
-              <li className="group relative overflow-hidden cursor-pointer py-1">
-                <div className="transition-transform duration-300 ease-[cubic-bezier(0.2,0.9,0.3,1.1)] whitespace-nowrap group-hover:-translate-y-full">
-                  <span className="text-[#7af298]">/</span> Twitter (x)
-                </div>
-                <div className="absolute left-0 top-full translate-y-0 transition-transform duration-300 ease-[cubic-bezier(0.2,0.9,0.3,1.1)] group-hover:translate-y-[-100%] whitespace-nowrap">
-                  <span className="text-[#7af298]">/</span>{" "}
-                  <span className="text-[#b7fecb]">Twitter (x)</span>
-                </div>
-              </li>
-
-              <li className="group relative overflow-hidden cursor-pointer py-1">
-                <div className="transition-transform duration-300 ease-[cubic-bezier(0.2,0.9,0.3,1.1)] whitespace-nowrap group-hover:-translate-y-full">
-                  <span className="text-[#7af298]">/</span> LinkedIn
-                </div>
-                <div className="absolute left-0 top-full translate-y-0 transition-transform duration-300 ease-[cubic-bezier(0.2,0.9,0.3,1.1)] group-hover:translate-y-[-100%] whitespace-nowrap">
-                  <span className="text-[#7af298]">/</span>{" "}
-                  <span className="text-[#b7fecb]">LinkedIn</span>
-                </div>
-              </li>
-
-              <li className="group relative overflow-hidden cursor-pointer py-1">
-                <div className="transition-transform duration-300 ease-[cubic-bezier(0.2,0.9,0.3,1.1)] whitespace-nowrap group-hover:-translate-y-full">
-                  <span className="text-[#7af298]">/</span> Github
-                </div>
-                <div className="absolute left-0 top-full translate-y-0 transition-transform duration-300 ease-[cubic-bezier(0.2,0.9,0.3,1.1)] group-hover:translate-y-[-100%] whitespace-nowrap">
-                  <span className="text-[#7af298]">/</span>{" "}
-                  <span className="text-[#b7fecb]">Github</span>
-                </div>
-              </li>
-
-              <li className="group relative overflow-hidden cursor-pointer py-1">
-                <div className="transition-transform duration-300 ease-[cubic-bezier(0.2,0.9,0.3,1.1)] whitespace-nowrap group-hover:-translate-y-full">
-                  <span className="text-[#7af298]">/</span> Facebook
-                </div>
-                <div className="absolute left-0 top-full translate-y-0 transition-transform duration-300 ease-[cubic-bezier(0.2,0.9,0.3,1.1)] group-hover:translate-y-[-100%] whitespace-nowrap">
-                  <span className="text-[#7af298]">/</span>{" "}
-                  <span className="text-[#b7fecb]">Facebook</span>
-                </div>
-              </li>
-            </ul>
-          </div>
-        </div>
+              <div className="transition-transform duration-300 ease-[cubic-bezier(0.2,0.9,0.3,1.1)] whitespace-nowrap group-hover:-translate-y-full">
+                <span className="text-[#7af298]">/</span> {name}
+              </div>
+              <div className="absolute left-0 top-full translate-y-0 transition-transform duration-300 ease-[cubic-bezier(0.2,0.9,0.3,1.1)] group-hover:translate-y-[-100%] whitespace-nowrap">
+                <span className="text-[#7af298]">/</span>{" "}
+                <span className="text-[#b7fecb]">{name}</span>
+              </div>
+            </motion.li>
+          ))}
+        </ul>
+      </div>
+    </div>
       </div>
 
     </div>
