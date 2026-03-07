@@ -102,7 +102,7 @@ const Hero = () => {
     return () => ctx.revert();
   }, []);
   return (
-    <div className="relative w-full lg:min-h-screen  flex pt-40 pb-10 justify-center overflow-hidden">
+    <div className="relative w-full lg:min-h-screen  flex pt-40 pb-10 justify-center overflow-visible">
 
       {/* ── Tablet+ image: absolute, centered horizontally, sits between name and bottom row ── */}
       <div

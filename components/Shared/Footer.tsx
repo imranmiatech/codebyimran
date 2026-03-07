@@ -57,7 +57,7 @@ export default function Footer() {
       {/* ── CTA hero ── */}
       <div
         ref={heroRef}
-        className="relative w-full flex items-center pt-[6vh] md:pt-[25vh] pb-[6vh] justify-center overflow-hidden cursor-none"
+        className="relative w-full flex items-center pt-[6vh] md:pt-[25vh] pb-[6vh] justify-center overflow-visible cursor-none"
         style={{ minHeight: "45vh", }}
         onMouseMove={handleMouseMove}
         onMouseEnter={() => setVisible(true)}
