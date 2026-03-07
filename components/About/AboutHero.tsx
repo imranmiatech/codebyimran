@@ -154,7 +154,7 @@ export default function AboutHero() {
   }, []);
 
   return (
-    <div ref={container} className="relative w-full pt-20 md:pt-5 lg:pt-0 bg-[#181010] text-white">
+    <div ref={container} className="relative w-full pt-20 md:pt-5 lg:pt-0 bg-[#181010] text-white overflow-hidden">
 
       {/* Hero Section */}
       <section className="relative flex flex-col lg:pt-20 items-center justify-center text-center px-4 min-h-screen">
