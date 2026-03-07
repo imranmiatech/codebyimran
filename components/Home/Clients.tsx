@@ -52,7 +52,7 @@ export default function Clients() {
   const gridInView  = useInView(gridRef,  { once: true, margin: "-60px" });
 
   return (
-    <section className="w-full bg-[#191818]  text-white">
+    <section className="w-full bg-[#191818]  text-white overflow-hidden">
       <div className="max-w-[1250px] mx-auto px-5 py-20 lg:py-28">
 
         {/* ── Top row ── */}
