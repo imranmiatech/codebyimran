@@ -98,7 +98,7 @@ const AngledCard = ({
 
     return (
         <motion.div
-            className="relative flex-shrink-0 group overflow-hidden cursor-pointer"
+            className="relative flex-shrink-0 group overflow-visible cursor-pointer"
             style={{
                 width: cardWidth,
                 height: "100%",
