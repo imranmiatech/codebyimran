@@ -52,20 +52,20 @@ export default function Footer() {
   };
 
   return (
-    <footer className="w-full text-white overflow-visible">
+    <footer className="w-full text-white overflow-hidden ">
 
       {/* ── CTA hero ── */}
       <div
         ref={heroRef}
-        className="relative w-full flex items-center pt-[6vh] md:pt-[25vh] pb-[6vh] justify-center overflow-visible cursor-none"
-        style={{ minHeight: "45vh", }}
+        className="relative w-full flex items-center pt-[6vh]  lg:pt-[25vh] pb-[6vh] md:min-h-[3ovh] xl:min-h-[45vh] justify-center overflow-visible  cursor-none"
+        
         onMouseMove={handleMouseMove}
         onMouseEnter={() => setVisible(true)}
         onMouseLeave={() => setVisible(false)}
       >
         {/* Green radial glow — always centered */}
         <div
-          className="absolute top-[80px]  w-[1000px] h-[700px] pointer-events-none blur-[120px] opacity-90"
+          className="absolute top-[60px]   w-[500px] h-[350px]  xl:w-[1000px] xl:h-[700px] pointer-events-none blur-[120px] opacity-90"
           style={{
             background: `
       radial-gradient(circle at 70% 30%, rgba(255,255,255,0.45) 0%, rgba(255,255,255,0.15) 20%, transparent 45%),

@@ -38,7 +38,7 @@ export default function RootLayout({
       lang="en"
       className={`${spaceGrotesk.variable} ${geistSans.variable} ${geistMono.variable}`}
     >
-      <body className="bg-[#181010] text-white overflow-hidden">
+      <body className="bg-[#181010] text-white">
         {/* Navbar is here */}
         <Navbar />
 
